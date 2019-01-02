@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>1.0.0</modelVersion>
+    <groupId>org.nelsnelson</groupId>
+    <artifactId>HttpCoreWebAppServer</artifactId>
+    <name>HttpCoreWebAppServer</name>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <description>Minimalist web application server based on Apache httpcore</description>
+    <url>https://github.com/nelsnelson/httpcore-web-application-server</url>
+    <scm>
+        <connection>scm:git:git://github.com/nelsnelson/httpcore-web-application-server.git</connection>
+        <url>https://github.com/nelsnelson/httpcore-web-application-server</url>
+        <developerConnection>scm:git:git://github.com/nelsnelson/httpcore-web-application-server.git</developerConnection>
+    </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <repositories>
+        <repository>
+            <id>jsonp-repo</id>
+            <url>http://central.maven.org/maven2/org/glassfish/jsonp-jaxrs/1.1.4/</url>
+        </repository>
+        <repository>
+            <id>protocollib-repo</id>
+            <url>http://repo.dmulloy2.net/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>md_5-public</id>
+            <url>http://repo.md-5.net/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <!-- TODO IDK Maybe not this -->
+        <!-- https://mvnrepository.com/artifact/io.openliberty.features/jsonp-1.0 -->
+        <dependency>
+            <groupId>io.openliberty.features</groupId>
+            <artifactId>jsonp-1.0</artifactId>
+            <version>18.0.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+        <!-- https://maven.java.net/content/repositories/releases/javax/servlet/javax.servlet-api/4.0.0/ -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://search.maven.org/artifact/org.glassfish/javax.json/1.1.4/bundle -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <sourceDirectory>${basedir}/src</sourceDirectory>
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                    <include>config.yml</include>
+                </includes>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                        </archive>
+                        <finalName>${project.artifactId}-${project.version}</finalName>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.0.2</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
